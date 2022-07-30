@@ -1,27 +1,33 @@
 # Make sure to change the action name here (must be unique).
 # Update the rest as needed.
-name: 'unique-action-goes-here'
-description: 'BRIEF DESCRIPTION OF YOUR ACTION'
+name: 'cucumber-ado-testplans-sync'
+description: 'Cucumber to Azure DevOps TestPlans Synchronization'
 branding: # Look at documentation for branding options/requirements. These are my favorites.
-  icon: 'book-open'
+  icon: 'bell'
   color: 'green'
 inputs:
-  input-one:  
-    description: 'Description of input-one'
+  ado-pat:
+    description: 'Azure DevOps PAT'
+    required: true
+  ado-org-id:
+    description: 'ADO Org URL'
+    required: true
+  project-id:
+    description: 'ADO Project ID'
+    required: true
+  plan-id:
+    description: 'ADO Plan ID'
+    required: true
+  suite-id:
+    description: 'ADO Suite ID'
     required: false
-    default: 'default value goes here'
-  input-two:
-    description: 'Description of input-two'
-    required: false
-    default: 'default value goes here'
 outputs:
-  output-one:
-    description: 'Description of output-one'
-  output-two:
-    description: 'Description of output-two'	
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.input-one }}
-    - ${{ inputs.input-two }}
+    - ${{ inputs.ado-pat }}
+    - ${{ inputs.ado-org-id }}
+    - ${{ inputs.project-id }}
+    - ${{ inputs.plan-id }}
+    - ${{ inputs.suite-id }}
